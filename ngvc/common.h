@@ -1,16 +1,19 @@
 #ifndef __COMMON_H
 #define __COMMON_H
 
-/* CPU operations (op) */
-
+// Kernel */
+//
 #define kmain main
-#define EMPTY 0
 
-#define OP_S1 240
-#define OP_S2 15
+/* RAM Instruction Accessors */
 
-#define OP_S2_F1 12
-#define OP_S2_F2 3
+	#define RAM_OP 240
+	#define RAM_ARG 15
+
+	#define RAM_ARG1 12
+	#define RAM_ARG2 3
+
+/* CPU operations (op) */
 
 // RAM => register
 #define CPU_LOAD_A 1	///	 ( RAM addr )
@@ -37,6 +40,7 @@
 // Interrupts
 #define CPU_HALT 15		/// Program done, halt computer
 
+// Graphics 
 #define VideoMemory 16	/// Video memory address
 
 // Register 2-bit IDs
@@ -46,10 +50,12 @@
 #define CPU_Register_d 3	///	Binary ID: [11]
 
 // CPU flag collection offsets
-#define CPU_ZF 0		/// Zero Flag
-#define CPU_OF 1		/// Overflow Flag
+#define CPU_ZF 0		/// Zero 
+#define CPU_OF 1		/// Overflow 
+#define CPU_SF 2		/// Sign 
+#define CPU_CF 3		/// Carry
 
-#define CPU_FLAGS 2
+#define CPU_FLAGS 4
 
 #define FLAG_ON 1
 #define FLAG_OFF 0

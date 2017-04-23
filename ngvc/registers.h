@@ -24,12 +24,12 @@ private:
 	//						 4-bit		4-bit
 	//	8-bit operation: [(operation)(arguments)] 
 																		//	4-bits
-	inline instruct_t get_op(instruct_t op) { return op & ~(OP_S1); }	//	get the operation of the instruction:	[0000xxxx]
-	inline instruct_t get_arg(instruct_t op) { return op & ~(OP_S2); }	//	get the arguments of the instruction:	[xxxx0000]
+	inline instruct_t get_op(instruct_t op) { return op & ~(RAM_OP); }	//	get the operation of the instruction:	[0000xxxx]
+	inline instruct_t get_arg(instruct_t op) { return op & ~(RAM_ARG); }	//	get the arguments of the instruction:	[xxxx0000]
 
 																						//	2-bits
-	inline instruct_t get_arg1(instruct_t op) { return get_arg(op) & ~(OP_S2_F1); }		//	get the first fraction:		[00xx0000]
-	inline instruct_t get_arg2(instruct_t op) { return get_arg(op) & ~(OP_S2_F2); }		//	get the second fraction:	[xx000000]
+	inline instruct_t get_arg1(instruct_t op) { return get_arg(op) & ~(RAM_ARG1); }		//	get the first fraction:		[00xx0000]
+	inline instruct_t get_arg2(instruct_t op) { return get_arg(op) & ~(RAM_ARG2); }		//	get the second fraction:	[xx000000]
 
 
 	/* CPU Registers */
