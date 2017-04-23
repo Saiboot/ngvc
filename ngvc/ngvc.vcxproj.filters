@@ -27,7 +27,7 @@
     <ClInclude Include="memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Assembler\file.h">
+    <ClInclude Include="Assembler utilities\file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
