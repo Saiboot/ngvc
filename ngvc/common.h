@@ -5,11 +5,12 @@
 //
 #define kmain main
 
-/* RAM Instruction Accessors */
-
+/* RAM Instruction Masks */
+						///	0 = cleared bit, x = untouched bit.
 #define RAM_OP 240		///	[0000xxxx]
 #define RAM_ARG 15		///	[xxxx0000]
 
+	// Argument segments
 	#define RAM_ARG1 12		///	[00xx]
 	#define RAM_ARG2 3		///	[xx00]
 

@@ -1,4 +1,2 @@
 THIS IS A TEST FILE
-THIS IS THE NEXT LINE
-this is another line
-lastly.
+NEW LINE
