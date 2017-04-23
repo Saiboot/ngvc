@@ -7,13 +7,13 @@
 
 /* RAM Instruction Accessors */
 
-	#define RAM_OP 240
-	#define RAM_ARG 15
+#define RAM_OP 240		///	[0000xxxx]
+#define RAM_ARG 15		///	[xxxx0000]
 
-	#define RAM_ARG1 12
-	#define RAM_ARG2 3
+	#define RAM_ARG1 12		///	[00xx]
+	#define RAM_ARG2 3		///	[xx00]
 
-/* CPU operations (op) */
+/* CPU operations (op-codes) */
 
 // RAM => register
 #define CPU_LOAD_A 1	///	 ( RAM addr )
@@ -33,9 +33,9 @@
 
 #define CPU_CMP 11		///	Compare two register's values	( register x, register y )
 
-#define CPU_JMP	12		/// Jump to RAM address address (unconditionally):	( RAM addr )
-#define CPU_JMP___	13	/// 
-#define CPU_JE 14		///	CPU: Negative Flag => Jump to RAM address:		( RAM addr )
+#define CPU_JMP	12		/// Jump to RAM address [unconditionally]:			( RAM addr )
+#define CPU_JNE	13		/// CPU: Zero Flag [0] => Jump to RAM address:		( RAM addr )
+#define CPU_JE 14		///	CPU: Zero Flag [1] => Jump to RAM address:		( RAM addr )
 
 // Interrupts
 #define CPU_HALT 15		/// Program done, halt computer

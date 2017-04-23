@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Assembler\file.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="CPU.h" />
     <ClInclude Include="memory.h" />
@@ -152,6 +153,9 @@
     <ClCompile Include="kernel.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="registers.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
