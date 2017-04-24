@@ -1,2 +1,8 @@
-THIS IS A TEST FILE
-NEW LINE
+.global start
+	mov $r1, #0
+	call loop
+:loop
+	mov $r1, $r2
+	cmp $r1, $r2
+	je loop
+	ret

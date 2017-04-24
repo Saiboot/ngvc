@@ -13,7 +13,6 @@
 //	
  */
 
-	size_t len;
 
 //	
 //	Aquire size of file
@@ -22,49 +21,43 @@
 //	@return: Size of file
 //	
 uint32_t getFileSize(FILE *file) {
-	if(fseek(file, 0L, SEEK_END) == 0) {
+	if (fseek(file, 0L, SEEK_END) == 0) {
 		uint32_t sz = ftell(file);
 		fseek(file, 0L, SEEK_SET);
 		return sz;
 	}
-
 	return 0;
 }
 
-
-// TODO: -InspectFile-
-//	Function needs rework
-//	Issue: Doesn't buff the whole file, only first word
 
 //	
 //	Inspect file content
 //	@param: file path
 //	
 //	@return: file content
-//
+//	
 char* inspectFile(char* file_path) {
 
-	FILE *pFile = fopen(file_path, "r");
-	char *aBuf = (char*) malloc(sizeof(char) * (getFileSize(pFile) + 1));
+	FILE *pFile = fopen(file_path, "rb");
+	long size = getFileSize(pFile);
 
-	if (pFile != NULL && sizeof(aBuf) > sizeof(char) * 1) {
+	char *aBuf = (char*) malloc(sizeof(char) * size + 1);
 
-		len = fread(aBuf, 1, sizeof(aBuf), pFile);
+	if (pFile != NULL && size != 0) {
+
+		size_t len = fread(aBuf, 1, size, pFile);
 
 		if (ferror(pFile))
-			exit(-1);
+			exit(EXIT_FAILURE);
 		else
-			*(aBuf + len++) = '\0';
+			aBuf[len] = '\0';
 	} else 
-		exit(-1);
+		exit(EXIT_FAILURE);
 
 	fclose(pFile);
 
 	return aBuf;
 }
 
-size_t getFileLength() {
-	return len;
-}
 
 #endif // !__INSTRUCTIONS_H

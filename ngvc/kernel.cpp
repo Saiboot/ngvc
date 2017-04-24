@@ -4,7 +4,8 @@
 #include "common.h"
 #include "CPU.h"
 #include "memory.h"
-#include "Assembler\file.h"
+#include "Assembler utilities\file.h"
+#include "Assembler utilities\format.h"
 
 int kmain() {
 		
@@ -15,21 +16,25 @@ int kmain() {
 	instruct_t n;
 	
 	char *aBuf = inspectFile("Text.txt");
-	printf("%d", len);
+	puts(aBuf);
 
-	for (size_t i = 0; i < len; i++)
-	{
-		puts(aBuf + i);
-	}
+	std::cout << std::endl;
+	std::cout << sizeof(aBuf) << std::endl;
+	
+	if(strstr(aBuf, ":"))
+		std::cout << ">> Found a label!";
 
+	/*
 	char* token;
-	token = strtok(aBuf, " ");
-
+	if (strtok(aBuf, ":"))
+		std::cout << ">> Found a label!";
+	
 	while (token != NULL) {
 		printf("%s", token);
 		token = strtok(NULL, " ");
 	}
-	
+	*/
+
 	while (true)
 	{
 		n = Processor->getInstructionID();			/// get next Instruction in queue
