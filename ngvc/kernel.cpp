@@ -44,6 +44,7 @@ int kmain() {
 			Processor->ClearFlags();
 	}
 
+	free(aBuf);
 	free(Processor);
 	free(Memory);
 
