@@ -7,6 +7,8 @@ CPU::CPU(RAM* RAMptr, unsigned int RAM_sz)
 {
 	m_pRAM = RAMptr;
 	m_pRegPlex = new RegisterMultiplexer(m_pRAM, &m_InstructAddr, m_FlagCollection, RAM_sz);
+
+	ClearFlags();
 }
 
 
