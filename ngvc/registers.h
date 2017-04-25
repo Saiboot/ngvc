@@ -1,6 +1,7 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
+#include <stdlib.h>
 #include "common.h"
 
 class RegisterMultiplexer
@@ -23,8 +24,8 @@ private:
 
 	//						 4-bit		4-bit
 	//	8-bit operation: [(operation)(arguments)] 
-																		//	4-bits
-	inline instruct_t get_op(instruct_t op) { return op & ~(RAM_OP); }	//	get the operation of the instruction:	[0000xxxx]
+																			//	4-bits
+	inline instruct_t get_op(instruct_t op) { return op & ~(RAM_OP); }		//	get the operation of the instruction:	[0000xxxx]
 	inline instruct_t get_arg(instruct_t op) { return op & ~(RAM_ARG); }	//	get the arguments of the instruction:	[xxxx0000]
 
 																						//	2-bits

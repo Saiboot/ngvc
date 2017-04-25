@@ -1,7 +1,9 @@
 #include "CPU.h"
 
 CPU::CPU(RAM* RAMptr, unsigned int RAM_sz)
-	:m_InstructAddr(0)
+	:m_InstructAddr(0),
+	 m_pRAM(0x0),
+	 m_pRegPlex(0x0)
 {
 	m_pRAM = RAMptr;
 	m_pRegPlex = new RegisterMultiplexer(m_pRAM, &m_InstructAddr, m_FlagCollection, RAM_sz);

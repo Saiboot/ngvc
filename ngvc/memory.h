@@ -14,6 +14,16 @@
 //
 RAM* ra_mem_alloc(instruct_t entry, uint32_t sz);
 
+//
+//	Deallocate Random accessible memory (RAM)
+//	
+//	@param mem: ptr to RAM block to be deallocated.
+//	@param sz: memory size.
+//
+//	@return: void
+//
+void ra_mem_dealloc(RAM *mem, uint32_t sz);
+
 #endif __RAM__
 
 #ifndef __STACK__

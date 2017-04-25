@@ -20,6 +20,19 @@ RAM* ra_mem_alloc(instruct_t entry, uint32_t sz) {
 	return memory;
 }
 
+//	
+//	Deallocate Random accessible memory (RAM)
+//	
+void ra_mem_dealloc(RAM *mem, uint32_t sz) {
+	for (size_t i = 0; i < sz; i++)
+	{
+		free(&mem[i].instruction);
+	}
+
+	free(&mem);
+}
+
+
 //
 //	Allocate a Linked list (Stack)
 //

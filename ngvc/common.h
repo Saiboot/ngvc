@@ -66,7 +66,6 @@ typedef unsigned __int8 instruct_t;
 typedef bool flag_t;
 
 typedef struct RAM {
-	const __int8 op_max_sz = 15;
 	instruct_t instruction;
 
 } RAM_t;

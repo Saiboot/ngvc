@@ -9,7 +9,7 @@
 
 int kmain() {
 		
-	__int8 RAM_size = 1024;
+	int RAM_size = 1024;
 	RAM_t *Memory = ra_mem_alloc(NULL, RAM_size);
 	CPU *Processor = new CPU(Memory, RAM_size);
 
@@ -21,9 +21,6 @@ int kmain() {
 	std::cout << std::endl;
 	std::cout << sizeof(aBuf) << std::endl;
 	
-	if(strstr(aBuf, ":"))
-		std::cout << ">> Found a label!";
-
 	/*
 	char* token;
 	if (strtok(aBuf, ":"))
@@ -46,7 +43,7 @@ int kmain() {
 
 	free(aBuf);
 	free(Processor);
-	free(Memory);
+	ra_mem_dealloc(Memory, RAM_size);
 
 	return 0;
 }
