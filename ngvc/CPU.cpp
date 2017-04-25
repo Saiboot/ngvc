@@ -14,7 +14,7 @@ CPU::CPU(RAM* RAMptr, unsigned int RAM_sz)
 
 void CPU::Tick(instruct_t instruct)
 {
-	m_pRegPlex->operate(m_pRegPlex, instruct);
+	m_pRegPlex->operate(instruct);
 	m_InstructAddr++;
 }
 

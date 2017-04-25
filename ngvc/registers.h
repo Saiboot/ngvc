@@ -18,7 +18,15 @@ public:
 			m_pNextInstruction = instructAddr;
 		}
 
-	void operate(RegisterMultiplexer *pReg, instruct_t op);
+	//	
+	//	Operate instruction
+	//	- Instruction structure defined within readme
+	//
+	//	@param op: operation to be executed by the CPU.
+	//	
+	//	@return bool: true on error
+	//	
+	bool operate(instruct_t op);
 	
 private:
 
@@ -35,10 +43,10 @@ private:
 
 	/* CPU Registers */
 
-	register_t m_Register_a;	///>	A
-	register_t m_Register_b;	///>	B
-	register_t m_Register_c;	///>	C
-	register_t m_Register_d;	///>	D
+	register_t m_Register_a = NULL;	///>	A
+	register_t m_Register_b = NULL;	///>	B
+	register_t m_Register_c = NULL;	///>	C
+	register_t m_Register_d = NULL;	///>	D
 	
 	char m_opErr;	// Error indicator
 	

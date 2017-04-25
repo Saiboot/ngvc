@@ -13,8 +13,6 @@ int kmain() {
 	RAM_t *Memory = ra_mem_alloc(NULL, RAM_size);
 	CPU *Processor = new CPU(Memory, RAM_size);
 
-	instruct_t n;
-	
 	char *aBuf = inspectFile("Text.txt");
 	puts(aBuf);
 
@@ -31,6 +29,8 @@ int kmain() {
 		token = strtok(NULL, " ");
 	}
 	*/
+
+	instruct_t n;
 
 	while (true)
 	{
