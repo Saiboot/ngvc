@@ -1,5 +1,5 @@
-#ifndef __INSTRUCTIONS_H
-#define __INSTRUCTIONS_H
+#ifndef __FILE_H
+#define __FILE_H
 
 #include <fstream>
 #include "../common.h"
@@ -60,4 +60,4 @@ char* inspectFile(char* file_path) {
 }
 
 
-#endif // !__INSTRUCTIONS_H
+#endif // !__FILE_H

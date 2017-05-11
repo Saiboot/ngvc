@@ -1,5 +1,5 @@
 #include "registers.h"
-
+#include <iostream>
 class CPU
 {
 public:

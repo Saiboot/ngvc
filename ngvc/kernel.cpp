@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <time.h>
 
 #include "common.h"
 #include "CPU.h"
@@ -9,39 +10,33 @@
 
 int kmain() {
 		
-	int RAM_size = 1024;
+	int RAM_size = 255;
 	RAM_t *Memory = ra_mem_alloc(NULL, RAM_size);
 	CPU *Processor = new CPU(Memory, RAM_size);
 
-	char *aBuf = inspectFile("Text.txt");
-	puts(aBuf);
-
-	std::cout << std::endl;
-	std::cout << sizeof(aBuf) << std::endl;
-	
-	/*
-	char* token;
-	if (strtok(aBuf, ":"))
-		std::cout << ">> Found a label!";
-	
-	while (token != NULL) {
-		printf("%s", token);
-		token = strtok(NULL, " ");
+	srand(time(NULL));
+	for (int i = 0; i < RAM_size; i++)
+	{
+			Memory[i].instruction = rand() % 200;	
 	}
-	*/
 
 	instruct_t n;
-
+	int i = 0;
 	while (true)
 	{
 		n = Processor->getInstructionID();			/// get next Instruction in queue
 		Processor->Tick(Memory[n].instruction);		/// process the Instruction
+		
+		std::cout << "Cycle: " << i << "\tAddress: " << (int)n;
+		printf("\tInstruction: %d  /  0x%x", Memory[n].instruction & 0xff, Memory[n].instruction);
 
 		if(!Processor->recentFlagSwap())		/// Clear _old_ CPU flag states
 			Processor->ClearFlags();
+
+		i++;
+		std::cin.get();
 	}
 
-	free(aBuf);
 	free(Processor);
 	ra_mem_dealloc(Memory, RAM_size);
 

@@ -33,6 +33,18 @@
     <ClInclude Include="Assembler utilities\file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Assembler utilities\preproc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Assembler utilities\lexisis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Assembler utilities\asmo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Assembler utilities\linker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPU.cpp">

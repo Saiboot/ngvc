@@ -309,22 +309,20 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 		//
 	case CPU_JMP:
 		*m_pNextInstruction = get_arg(op);	///	Next instruction in queue
-		false;
+		return false;
 	case CPU_JE:
 		if (m_paCPUFlags[CPU_ZF] == FLAG_ON) {
-			*m_pNextInstruction = get_arg(op);				///	Next instruction in queue
+			*m_pNextInstruction = get_arg(op);			///	Next instruction in queue
 			m_paCPUFlags[CPU_ZF] = FLAG_OFF;			/// Reset the flag
 		}
-		false;
-
+		return false;
 		// CPU Interrupts */
 		//
 	case CPU_HALT:
-		*m_pNextInstruction = m_RAM_sz;
-		false;
+		// *m_pNextInstruction = m_RAM_sz;
+		return false;
 	default:
 		break;
 	}
-
 	return true;
 }
