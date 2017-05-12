@@ -48,6 +48,12 @@ private:
 	register_t m_Register_c = NULL;	///>	C
 	register_t m_Register_d = NULL;	///>	D
 	
+	/* Dedicated registers */
+
+	register_t m_Register_sp = NULL; ///>	Stack
+	register_t m_Register_bp = NULL; ///>	Base
+
+
 	char m_opErr;	// Error indicator
 	
 	instruct_t *m_pNextInstruction;		// Instruction Cycle
