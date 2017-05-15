@@ -1,18 +1,11 @@
 #ifndef __COMMON_H
 #define __COMMON_H
 
+#include "kernel.h"
+
 // Kernel */
 //
 #define kmain main
-
-/* RAM Instruction Masks */
-						///	0 = cleared bit, x = untouched bit.
-#define RAM_OP 240		///	[0000xxxx]
-#define RAM_ARG 15		///	[xxxx0000]
-
-	// Argument segments
-	#define RAM_ARG1 12		///	[00xx]
-	#define RAM_ARG2 3		///	[xx00]
 
 /* CPU operations (op-codes) */
 
@@ -61,8 +54,36 @@
 #define FLAG_ON 1
 #define FLAG_OFF 0
 
+#if defined(__NGVC8__)
+/* Instruction Masks */
+
+						///	0 = cleared bit, x = untouched bit.
+#define RAM_OP 240		///	[0000xxxx]
+#define RAM_ARG 15		///	[xxxx0000]
+
+	// Argument segments
+	#define RAM_ARG1 12		///	[00xx]
+	#define RAM_ARG2 3		///	[xx00]
+
 typedef unsigned __int8 register_t;
 typedef unsigned __int8 instruct_t;
+#endif
+
+#if defined (__NGVC16__)
+/* Instruction Masks */
+
+///	0 = cleared bit, x = untouched bit.
+#define RAM_OP ...		///	[00000000][xxxxxxxx]
+#define RAM_ARG ..		///	[xxxxxxxx][00000000]
+
+	// Argument segments
+	#define RAM_ARG1 ..		///	[0000xxxx]
+	#define RAM_ARG2 .		///	[xxxx0000]
+
+typedef unsigned __int16 register_t;
+typedef unsigned __int16 instruct_t;
+#endif
+
 typedef bool flag_t;
 
 typedef struct RAM {
@@ -75,4 +96,15 @@ typedef struct List {
 	List* next;
 
 } List_t;
+
+typedef struct tag {
+	char *string;			//					( 1 byte )
+	uint16_t address;		//					( 2 bytes )
+
+	tag(char* s, uint16_t addr) {
+		string = s;
+		address = addr;
+	}
+
+} tag;
 #endif // !__COMMON_H

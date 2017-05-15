@@ -45,6 +45,9 @@
     <ClInclude Include="Assembler utilities\linker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="kernel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPU.cpp">
