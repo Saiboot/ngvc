@@ -11,6 +11,16 @@ public:
 	inline instruct_t getInstructionID() { return m_InstructAddr; }
 	bool recentFlagSwap();
 
+	//	
+	//	Aquire latest instruction error
+	//	- 
+	//	
+	//	@return int: error code
+	//
+	inline int getError() { return (int)m_pRegPlex->getError(); }
+
+	bool m_InstructErr;
+
 	~CPU();
 private:
 	RegisterMultiplexer *m_pRegPlex;

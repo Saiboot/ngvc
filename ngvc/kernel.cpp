@@ -28,7 +28,10 @@ int kmain() {
 		Processor->Tick(Memory[n].instruction);		/// process the Instruction
 		
 		std::cout << "Cycle: " << i << "\tAddress: " << (int)n;
-		printf("\tInstruction: %d  /  0x%x", Memory[n].instruction & 0xff, Memory[n].instruction);
+		printf("\tInstruction: %d  /  0x%x", Memory[n].instruction, Memory[n].instruction);
+
+		if (Processor->m_InstructErr)
+			printf("\nError code: %d / 0x%x", Processor->getError(), Processor->getError());
 
 		if(!Processor->recentFlagSwap())		/// Clear _old_ CPU flag states
 			Processor->ClearFlags();

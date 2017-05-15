@@ -28,6 +28,14 @@ public:
 	//	
 	bool operate(instruct_t op);
 	
+	//	
+	//	Aquire latest instruction error
+	//	- 
+	//	
+	//	@return instruct_t: error code
+	//
+	inline instruct_t getError() { return m_opErr; }
+
 private:
 
 	//						 4-bit		4-bit

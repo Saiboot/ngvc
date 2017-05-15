@@ -2,6 +2,7 @@
 
 CPU::CPU(RAM* RAMptr, unsigned int RAM_sz)
 	:m_InstructAddr(0),
+	 m_InstructErr(0),
 	 m_pRAM(0x0),
 	 m_pRegPlex(0x0)
 {
@@ -14,7 +15,9 @@ CPU::CPU(RAM* RAMptr, unsigned int RAM_sz)
 
 void CPU::Tick(instruct_t instruct)
 {
-	m_pRegPlex->operate(instruct);
+	m_InstructErr = false;
+
+	if (!m_pRegPlex->operate(instruct)) m_InstructErr = true;
 	++m_InstructAddr;
 }
 
