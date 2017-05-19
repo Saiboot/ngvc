@@ -25,7 +25,7 @@ public:
 private:
 	RegisterMultiplexer *m_pRegPlex;
 	instruct_t m_InstructAddr;
-	flag_t m_FlagCollection[CPU_FLAGS];
+	register_t m_FlagCollection;
 
 	RAM* m_pRAM;
 };

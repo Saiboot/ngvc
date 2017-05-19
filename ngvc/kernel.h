@@ -1,7 +1,7 @@
 #ifndef __KERNEL_H
 #define __KERNEL_H
 
-#define MODE_SHORT	// Current operating system mode
+#define MODE_PROTECTED	// Current operating system mode
 
 #if defined(MODE_SHORT)
   #define __NGVC8__

@@ -7,7 +7,7 @@ CPU::CPU(RAM* RAMptr, unsigned int RAM_sz)
 	 m_pRegPlex(0x0)
 {
 	m_pRAM = RAMptr;
-	m_pRegPlex = new RegisterMultiplexer(m_pRAM, &m_InstructAddr, m_FlagCollection, RAM_sz);
+	m_pRegPlex = new RegisterMultiplexer(m_pRAM, &m_InstructAddr, &m_FlagCollection, RAM_sz);
 
 	ClearFlags();
 }
@@ -24,20 +24,20 @@ void CPU::Tick(instruct_t instruct)
 
 void CPU::ClearFlags()
 {
-	for (char i = 0; i < CPU_FLAGS; i++)
-	{
-		m_FlagCollection[i] = false;
-	}
+	nglib::clearAttrib(&m_FlagCollection, CPU_FLAGS);
 }
 
 
 bool CPU::recentFlagSwap()
 {
-	for (char i = 0; i < CPU_FLAGS; i++)
-	{
-		if (m_FlagCollection[i] == true) 
-			return true;
-	}
+	if (nglib::peekAttrib(m_FlagCollection, CPU_ZF))	// Zero
+		return true;
+	if (nglib::peekAttrib(m_FlagCollection, CPU_OF))	// Overflow
+		return true;
+	if (nglib::peekAttrib(m_FlagCollection, CPU_SF))	// Sign
+		return true;
+	if (nglib::peekAttrib(m_FlagCollection, CPU_CF))	// Carry
+		return true;
 }
 
 
