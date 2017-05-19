@@ -9,6 +9,11 @@
 
 /* CPU operations (op-codes) */
 
+//	
+//	TODO: Generalize LOAD & STORE => MOV
+//	8 + 2 opcodes => 1 opcode
+//	
+
 // RAM => register
 #define CPU_LOAD_A 1	///	 ( RAM addr )
 #define CPU_LOAD_B 2	///	 ( RAM addr )
@@ -69,7 +74,7 @@ typedef unsigned __int8 register_t;
 typedef unsigned __int8 instruct_t;
 #endif
 
-#if defined (__NGVC16__)
+#if defined (__NGVC32__)
 /* Instruction Masks */
 
 ///	0 = cleared bit, x = untouched bit.
@@ -80,9 +85,13 @@ typedef unsigned __int8 instruct_t;
 	#define RAM_ARG1 ..		///	[0000xxxx]
 	#define RAM_ARG2 .		///	[xxxx0000]
 
-typedef unsigned __int16 register_t;
-typedef unsigned __int16 instruct_t;
+typedef unsigned __int32 register_t;
+typedef unsigned __int32 instruct_t;
 #endif
+
+//	
+//	TODO: Remap CPU Flag collection
+//	
 
 typedef bool flag_t;
 
@@ -98,10 +107,10 @@ typedef struct List {
 } List_t;
 
 typedef struct tag {
-	char *string;			//					( 1 byte )
-	uint16_t address;		//					( 2 bytes )
+	char *string;				//					( 1 byte  )
+	unsigned short address;		//					( 2 bytes )
 
-	tag(char* s, uint16_t addr) {
+	tag(char* s, unsigned short addr) {
 		string = s;
 		address = addr;
 	}

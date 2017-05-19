@@ -9,7 +9,7 @@
 //	
 RAM* ra_mem_alloc(instruct_t entry, uint32_t sz) {
 
-	RAM* memory = (RAM*)malloc(sizeof(RAM_t) * sz);
+	RAM *memory = (RAM*)malloc(sizeof(RAM_t) * sz);
 
 	if (!memory) {
 		puts("Error allocating RAM.\n");

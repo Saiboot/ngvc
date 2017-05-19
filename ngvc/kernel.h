@@ -5,8 +5,8 @@
 
 #if defined(MODE_SHORT)
   #define __NGVC8__
-#elif defined(MODE_REAL)
-  #define __NGVC16__
+#elif defined(MODE_PROTECTED)
+  #define __NGVC32__
 #endif
 
 #endif //!__KERNEL_H

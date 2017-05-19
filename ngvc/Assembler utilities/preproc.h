@@ -49,8 +49,8 @@ void Preprocess(char *aBuf) {
 		while (token)
 		{
 			/* Compiler ignore comment lines */
-			char *chrloc = strchr(token, '#');
-			if (chrloc)								///	# Comment
+			char *chrloc = strchr(token, ';');
+			if (chrloc)								///	; Comment
 				break;								/// Skip comment line
 
 			/* Check for tag */
