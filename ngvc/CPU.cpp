@@ -1,5 +1,7 @@
 #include "CPU.h"
 
+using namespace nglib_utilities;	// Buffer attribute manipulation
+
 CPU::CPU(RAM* RAMptr, unsigned int RAM_sz)
 	:m_InstructAddr(0),
 	 m_InstructErr(0),
@@ -24,19 +26,19 @@ void CPU::Tick(instruct_t instruct)
 
 void CPU::ClearFlags()
 {
-	nglib::clearAttrib(&m_FlagCollection, CPU_FLAGS);
+	clearAttrib(&m_FlagCollection, CPU_FLAGS);
 }
 
 
 bool CPU::recentFlagSwap()
 {
-	if (nglib::peekAttrib(m_FlagCollection, CPU_ZF))	// Zero
+	if (peekAttrib(m_FlagCollection, CPU_ZF))	// Zero
 		return true;
-	if (nglib::peekAttrib(m_FlagCollection, CPU_OF))	// Overflow
+	if (peekAttrib(m_FlagCollection, CPU_OF))	// Overflow
 		return true;
-	if (nglib::peekAttrib(m_FlagCollection, CPU_SF))	// Sign
+	if (peekAttrib(m_FlagCollection, CPU_SF))	// Sign
 		return true;
-	if (nglib::peekAttrib(m_FlagCollection, CPU_CF))	// Carry
+	if (peekAttrib(m_FlagCollection, CPU_CF))	// Carry
 		return true;
 }
 

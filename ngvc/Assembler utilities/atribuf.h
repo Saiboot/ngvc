@@ -7,7 +7,7 @@
 //                                                //
 //************************************************//
 
-namespace nglib {
+namespace nglib_utilities {
 
 /* BYTE 1 - [8] */
 #define BIT_1 0x1
