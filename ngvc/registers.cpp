@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Assembler utilities\atribuf.h"
 
+using namespace nglib_utilities;	// Buffer attribute manipulation
+
 bool RegisterMultiplexer::operate(instruct_t op) {
 	if (!op)
 		return true;
@@ -238,13 +240,13 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				m_opErr = op;
 				return true;
 			case CPU_Register_EBX:
-				if (m_Register_eax == m_Register_ebx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_eax == m_Register_ebx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			case CPU_Register_ECX:
-				if (m_Register_eax == m_Register_ecx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_eax == m_Register_ecx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			case CPU_Register_EDX:
-				if (m_Register_eax == m_Register_edx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_eax == m_Register_edx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			default:
 				m_opErr = op;
@@ -255,16 +257,16 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 			switch (op)
 			{
 			case CPU_Register_EAX:
-				if (m_Register_ebx == m_Register_eax) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_ebx == m_Register_eax) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			case CPU_Register_EBX:	/// error
 				m_opErr = op;
 				return true;
 			case CPU_Register_ECX:
-				if (m_Register_ebx == m_Register_ecx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_ebx == m_Register_ecx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			case CPU_Register_EDX:
-				if (m_Register_ebx == m_Register_edx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_ebx == m_Register_edx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			default:
 				m_opErr = op;
@@ -275,16 +277,16 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 			switch (op)
 			{
 			case CPU_Register_EAX:
-				if (m_Register_ecx == m_Register_eax) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_ecx == m_Register_eax) setAttrib(m_pCPUFlags, CPU_ZF);
 				return true;
 			case CPU_Register_EBX:
-				if (m_Register_ecx == m_Register_ebx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_ecx == m_Register_ebx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			case CPU_Register_ECX:	/// error
 				m_opErr = op;
 				return true;
 			case CPU_Register_EDX:
-				if (m_Register_ecx == m_Register_edx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_ecx == m_Register_edx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			default:
 				m_opErr = op;
@@ -295,13 +297,13 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 			switch (op)
 			{
 			case CPU_Register_EAX:
-				if (m_Register_edx == m_Register_eax) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_edx == m_Register_eax) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			case CPU_Register_EBX:
-				if (m_Register_edx == m_Register_ebx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_edx == m_Register_ebx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			case CPU_Register_ECX:
-				if (m_Register_edx == m_Register_ecx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
+				if (m_Register_edx == m_Register_ecx) setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			case CPU_Register_EDX:	/// error
 				m_opErr = op;
@@ -316,16 +318,16 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 			return true;
 		}
 		break;
-
+		
 		// MEMORY JUMPING */
 		//
 	case CPU_JMP:
 		*m_pNextInstruction = op;	///	Next instruction in queue
 		return false;
 	case CPU_JE:
-		if (m_pCPUFlags[CPU_ZF] == FLAG_ON) {
-			*m_pNextInstruction = op;			///	Next instruction in queue
-			m_pCPUFlags[CPU_ZF] = FLAG_OFF;			/// Reset the flag
+		if (peekAttrib(*m_pCPUFlags, CPU_ZF)) {
+			*m_pNextInstruction = op;                           ///	Next instruction in queue
+			clearAttrib(m_pCPUFlags, CPU_ZF);  /// Reset the flag
 		}
 		return false;
 		// CPU Interrupts */
