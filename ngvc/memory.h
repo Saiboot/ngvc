@@ -1,8 +1,8 @@
 #include "common.h"
 
-#ifndef __RAM__
+#ifndef __MEMORY_H
 
-	#define __RAM__
+#define __MEMORY_H
 
 //
 //	Allocate Random accessible memory (RAM)
@@ -23,12 +23,6 @@ RAM* ra_mem_alloc(instruct_t entry, uint32_t sz);
 //	@return: void
 //
 void ra_mem_dealloc(RAM *mem, uint32_t sz);
-
-#endif __RAM__
-
-#ifndef __STACK__
-	
-	#define __STACK__
 
 //
 //	Allocate a Linked list (Stack)
@@ -60,4 +54,4 @@ void pop(List* stack, uint32_t sz);
 //
 void push(List* stack, uint32_t data);
 
-#endif __STACK__
+#endif //!__MEMORY_H

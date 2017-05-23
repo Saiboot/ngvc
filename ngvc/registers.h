@@ -13,10 +13,10 @@ public:
 		 m_pCPUFlags(flags),
 		 m_RAM_sz(RAM_sz),
 
-		m_Register_a(NULL),
-		m_Register_b(NULL),
-		m_Register_c(NULL),
-		m_Register_d(NULL),
+		m_Register_eax(NULL),
+		m_Register_ebx(NULL),
+		m_Register_ecx(NULL),
+		m_Register_edx(NULL),
 
 		m_Register_bp(NULL),
 		m_Register_sp(NULL)
@@ -66,10 +66,10 @@ private:
 
 	/* CPU Registers */
 
-	register_t m_Register_a;	///>	A
-	register_t m_Register_b;	///>	B
-	register_t m_Register_c;	///>	C
-	register_t m_Register_d;	///>	D
+	register_t m_Register_eax;	///>	A
+	register_t m_Register_ebx;	///>	B
+	register_t m_Register_ecx;	///>	C
+	register_t m_Register_edx;	///>	D
 	
 	/* Dedicated registers */
 

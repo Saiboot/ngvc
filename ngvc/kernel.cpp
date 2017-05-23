@@ -14,7 +14,7 @@ int kmain() {
 	// Initialize Hardware components //
 
 	int RAM_size = 255;
-	RAM_t *Memory = ra_mem_alloc(NULL, RAM_size);
+	RAM *Memory = ra_mem_alloc(NULL, RAM_size);
 	CPU *Processor = new CPU(Memory, RAM_size);
 
 	// Generate random opcodes for testing //
