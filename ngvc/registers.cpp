@@ -6,6 +6,16 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 	if (!op)
 		return true;
 
+	switch (nglib_utilities::peekAttrib(op, INSTRUCT_OPCODE))
+	{
+	case CPU_MOV:
+
+		RAM *mem = (RAM*)malloc(sizeof(RAM) * 30);
+
+
+		break;
+	}
+
 	switch (op)
 	{
 
@@ -45,19 +55,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 	case CPU_ADD:
 		switch (op)
 		{
-		case CPU_Register_a:
+		case CPU_Register_EAX:
 			switch (op)
 			{
-			case CPU_Register_a:	/// error
+			case CPU_Register_EAX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				m_Register_eax += m_Register_ebx;
 				return false;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				m_Register_eax += m_Register_ecx;
 				return false;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				m_Register_eax += m_Register_edx;
 				return false;
 			default:
@@ -65,19 +75,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_b:
+		case CPU_Register_EBX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				m_Register_ebx += m_Register_eax;
 				return false;
-			case CPU_Register_b:	/// error
+			case CPU_Register_EBX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				m_Register_ebx += m_Register_ecx;
 				return false;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				m_Register_ebx += m_Register_edx;
 				return false;
 			default:
@@ -85,19 +95,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_c:
+		case CPU_Register_ECX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				m_Register_ecx += m_Register_eax;
 				return false;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				m_Register_ecx += m_Register_ebx;
 				return false;
-			case CPU_Register_c:	/// error
+			case CPU_Register_ECX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				m_Register_ecx += m_Register_edx;
 				return false;
 			default:
@@ -105,19 +115,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_d:
+		case CPU_Register_EDX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				m_Register_edx += m_Register_eax;
 				return false;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				m_Register_edx += m_Register_ebx;
 				return false;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				m_Register_edx += m_Register_ecx;
 				return false;
-			case CPU_Register_d:	/// error
+			case CPU_Register_EDX:	/// error
 				m_opErr = op;
 				return true;
 			default:
@@ -133,19 +143,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 	case CPU_SUB:
 		switch (op)
 		{
-		case CPU_Register_a:
+		case CPU_Register_EAX:
 			switch (op)
 			{
-			case CPU_Register_a:	/// error
+			case CPU_Register_EAX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				m_Register_eax -= m_Register_ebx;
 				return false;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				m_Register_eax -= m_Register_ecx;
 				return false;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				m_Register_eax -= m_Register_edx;
 				return false;
 			default:
@@ -153,19 +163,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_b:
+		case CPU_Register_EBX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				m_Register_ebx -= m_Register_eax;
 				return false;
-			case CPU_Register_b:	/// error
+			case CPU_Register_EBX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				m_Register_ebx -= m_Register_ecx;
 				return false;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				m_Register_ebx -= m_Register_edx;
 				return false;
 			default:
@@ -173,19 +183,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_c:
+		case CPU_Register_ECX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				m_Register_ecx -= m_Register_eax;
 				return false;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				m_Register_ecx -= m_Register_ebx;
 				return false;
-			case CPU_Register_c:	/// error
+			case CPU_Register_ECX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				m_Register_ecx -= m_Register_edx;
 				return false;
 			default:
@@ -193,19 +203,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_d:
+		case CPU_Register_EDX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				m_Register_edx -= m_Register_eax;
 				return false;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				m_Register_edx -= m_Register_ebx;
 				return false;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				m_Register_edx -= m_Register_ecx;
 				return false;
-			case CPU_Register_d:	/// error
+			case CPU_Register_EDX:	/// error
 				m_opErr = op;
 				return true;
 			default:
@@ -221,19 +231,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 	case CPU_CMP:
 		switch (op)
 		{
-		case CPU_Register_a:
+		case CPU_Register_EAX:
 			switch (op)
 			{
-			case CPU_Register_a:	/// error
+			case CPU_Register_EAX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				if (m_Register_eax == m_Register_ebx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				if (m_Register_eax == m_Register_ecx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				if (m_Register_eax == m_Register_edx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			default:
@@ -241,19 +251,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_b:
+		case CPU_Register_EBX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				if (m_Register_ebx == m_Register_eax) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
-			case CPU_Register_b:	/// error
+			case CPU_Register_EBX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				if (m_Register_ebx == m_Register_ecx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				if (m_Register_ebx == m_Register_edx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			default:
@@ -261,19 +271,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_c:
+		case CPU_Register_ECX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				if (m_Register_ecx == m_Register_eax) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return true;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				if (m_Register_ecx == m_Register_ebx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
-			case CPU_Register_c:	/// error
+			case CPU_Register_ECX:	/// error
 				m_opErr = op;
 				return true;
-			case CPU_Register_d:
+			case CPU_Register_EDX:
 				if (m_Register_ecx == m_Register_edx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
 			default:
@@ -281,19 +291,19 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 				return true;
 			}
 			break;
-		case CPU_Register_d:
+		case CPU_Register_EDX:
 			switch (op)
 			{
-			case CPU_Register_a:
+			case CPU_Register_EAX:
 				if (m_Register_edx == m_Register_eax) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
-			case CPU_Register_b:
+			case CPU_Register_EBX:
 				if (m_Register_edx == m_Register_ebx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
-			case CPU_Register_c:
+			case CPU_Register_ECX:
 				if (m_Register_edx == m_Register_ecx) nglib_utilities::setAttrib(m_pCPUFlags, CPU_ZF);
 				return false;
-			case CPU_Register_d:	/// error
+			case CPU_Register_EDX:	/// error
 				m_opErr = op;
 				return true;
 			default:
@@ -327,4 +337,28 @@ bool RegisterMultiplexer::operate(instruct_t op) {
 		break;
 	}
 	return true;
+}
+
+__int8 RegisterMultiplexer::doop_R(RAM *pRAM, uint8_t reg1, uint8_t reg2, uint8_t reg3, uint8_t shift, uint8_t func)
+{
+
+
+
+	return 0;
+}
+
+__int8 RegisterMultiplexer::doop_I(RAM *pRAM, uint8_t reg1, uint8_t reg2, uint16_t immed)
+{
+
+
+
+	return 0;
+}
+
+__int8 RegisterMultiplexer::doop_J(RAM *pRAM, uint32_t target)
+{
+
+
+
+	return 0;
 }

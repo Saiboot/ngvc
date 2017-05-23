@@ -9,6 +9,13 @@ public:
 	void ClearFlags();
 
 	inline instruct_t getInstructionID() { return m_InstructAddr; }
+	
+	//	
+	//	Check if there has been a recent flag swap
+	//	-
+	//	
+	//	@return bool: true or false
+	//	
 	bool recentFlagSwap();
 
 	//	
@@ -19,6 +26,9 @@ public:
 	//
 	inline int getError() { return (int)m_pRegPlex->getError(); }
 
+	//	
+	//	Instruction Error Flag
+	//	
 	bool m_InstructErr;
 
 	~CPU();

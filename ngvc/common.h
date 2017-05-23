@@ -17,27 +17,27 @@
 
 // RAM => register
 
-// #define CPU_LOAD_A 1	///	 ( RAM addr )
-// #define CPU_LOAD_B 2	///	 ( RAM addr )
-// #define CPU_LOAD_C 3	///	 ( RAM addr )
-// #define CPU_LOAD_D 4	///	 ( RAM addr )
+	// #define CPU_LOAD_A 1	///	 ( RAM addr )
+	// #define CPU_LOAD_B 2	///	 ( RAM addr )
+	// #define CPU_LOAD_C 3	///	 ( RAM addr )
+	// #define CPU_LOAD_D 4	///	 ( RAM addr )
 
-// Register => RAM
+	// Register => RAM
 
-// #define CPU_STORE_A	5	///	 ( RAM addr )
-// #define CPU_STORE_B	6	///	 ( RAM addr )	
-// #define CPU_STORE_C	7	///	 ( RAM addr )	
-// #define CPU_STORE_D	8	///	 ( RAM addr )	
+	// #define CPU_STORE_A	5	///	 ( RAM addr )
+	// #define CPU_STORE_B	6	///	 ( RAM addr )	
+	// #define CPU_STORE_C	7	///	 ( RAM addr )	
+	// #define CPU_STORE_D	8	///	 ( RAM addr )	
 
 #define CPU_MOV	1		///	 ( dest, source )
 
 // Arithmetics
-#define CPU_ADD	9		/// Add		  two registers:			( register x, register y )
-#define CPU_SUB	10		/// Subtract  two registers:			( register x, register y )
-#define CPU_DIV			/// Divide	  two registers:			( register x, register y )
-#define CPU_MUL			/// Multiply  two registers:			( register x, register y )
+#define CPU_ADD	9		/// Add two registers:         ( register x, register y )
+#define CPU_SUB	10		/// Subtract  two registers:   ( register x, register y )
+#define CPU_DIV			/// Divide two registers:      ( register x, register y )
+#define CPU_MUL			/// Multiply  two registers:   ( register x, register y )
 
-#define CPU_CMP 11		///	Compare two register's values		( register x, register y )
+#define CPU_CMP 11		///	Compare two register's values	 ( register x, register y )
 						/// ==> Update CPU - Flag registers
 
 #define CPU_JMP	12		/// Jump to RAM address [unconditionally]:			( RAM addr )
@@ -53,10 +53,10 @@
 #define VideoMemory 16	/// Video memory address
 
 // Register 2-bit IDs
-#define CPU_Register_a 0	///	Binary ID: [00]
-#define CPU_Register_b 1	///	Binary ID: [01]
-#define CPU_Register_c 2	///	Binary ID: [10]
-#define CPU_Register_d 3	///	Binary ID: [11]
+#define CPU_Register_EAX 0	///	Binary ID: [00]
+#define CPU_Register_EBX 1	///	Binary ID: [01]
+#define CPU_Register_ECX 2	///	Binary ID: [10]
+#define CPU_Register_EDX 3	///	Binary ID: [11]
 
 // CPU flag collection offsets
 #define CPU_ZF BIT_1			/// Zero 
@@ -104,9 +104,28 @@ typedef unsigned __int32 register_t;
 
 #endif
 
-//	
-//	TODO: Remap CPU Flag collection
-//	
+//
+//	TODO: Place this somewhere close to the assembler
+//
+
+typedef struct directive_t {
+	char name[UCHAR_MAX];
+	__int8 suffix;
+} directive_t;
+
+//
+//	TODO: Place this somewhere close to the assembler
+//
+
+const directive_t Directives[4][UCHAR_MAX] = {
+	{ ".data",   BIT_1},	
+	{ ".text",   BIT_2},	
+	{ ".bss",    BIT_3},	
+	{ ".global", BIT_4}		
+};
+
+
+typedef unsigned char uint8_t;
 
 typedef struct RAM {
 	instruct_t instruction;
@@ -129,38 +148,5 @@ typedef struct tag {
 	}
 
 } tag;
-
-
-
-//  opcode	->>  operands 
-//  <operation> <dest>, <source>, <source>
-
-// shifts & instructs that reference only registers.
-__int8 doop_R(RAM* pRAM, unsigned char r1, unsigned char r2, unsigned char r3, unsigned char shift, unsigned char func) {
-	pRAM->instruction;
-
-}
-
-__int8 doop_I(RAM* pRAM, unsigned char r1, unsigned char r2, unsigned char r3, unsigned char shift, unsigned char func) {
-	pRAM->instruction;
-
-}
-
-__int8 doop_J(RAM* pRAM, unsigned char r1, unsigned char r2, unsigned char r3, unsigned char shift, unsigned char func) {
-	pRAM->instruction;
-
-}
-
-void operate(instruct_t instruct) {
-	switch (nglib_utilities::peekAttrib(instruct, INSTRUCT_OPCODE))
-	{
-	case CPU_MOV:
-		
-		RAM *mem = (RAM*)malloc(sizeof(RAM) * 30);
-
-
-		break;
-	}
-}
 
 #endif // !__COMMON_H

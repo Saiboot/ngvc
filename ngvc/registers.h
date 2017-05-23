@@ -18,8 +18,11 @@ public:
 		m_Register_ecx(NULL),
 		m_Register_edx(NULL),
 
-		m_Register_bp(NULL),
-		m_Register_sp(NULL)
+		m_Register_ebp(NULL),
+		m_Register_esp(NULL),
+
+		m_Register_rsi(NULL),
+		m_Register_rdi(NULL)
 
 		{ 
 			m_pRAM = RAM;
@@ -63,19 +66,30 @@ private:
 																															//	6-bits							   [-        32 bit       -]
 	inline instruct_t get_opcode(instruct_t instruct) { return instruct & ~(invertAttrib(instruct, INSTRUCT_OPCODE)); }		//	get the opcode of the instruction: [xxxxxx00][...][...][...]
 
+	///  opcode	->>  operands 
+	///  <operation> <dest>, <source>, <source>
 
-	/* CPU Registers */
+	// Shifts & instructs that reference only registers.
+	__int8 doop_R(RAM* pRAM, uint8_t reg1, uint8_t reg2, uint8_t reg3, uint8_t shift, uint8_t func);
+
+	// Arithmetic/Logical, Load, store, branches & immediate instructions.
+	__int8 doop_I(RAM* pRAM, uint8_t reg1, uint8_t reg2, uint16_t immed);
+
+	// Jump & call instructions.
+	__int8 doop_J(RAM* pRAM, uint32_t target);
+
+	/* Dedicated General Purpose CPU Registers */
 
 	register_t m_Register_eax;	///>	A
 	register_t m_Register_ebx;	///>	B
 	register_t m_Register_ecx;	///>	C
 	register_t m_Register_edx;	///>	D
-	
-	/* Dedicated registers */
 
-	register_t m_Register_sp;	///>	Stack
-	register_t m_Register_bp;	///>	Base
+	register_t m_Register_ebp;	///>	Base
+	register_t m_Register_esp;	///>	Stack
 
+	register_t m_Register_rsi;	///>	Source
+	register_t m_Register_rdi;	///>	Destination
 
 	char m_opErr;	// Error indicator
 	

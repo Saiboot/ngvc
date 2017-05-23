@@ -32,13 +32,10 @@ void CPU::ClearFlags()
 
 bool CPU::recentFlagSwap()
 {
-	if (peekAttrib(m_FlagCollection, CPU_ZF))	// Zero
-		return true;
-	if (peekAttrib(m_FlagCollection, CPU_OF))	// Overflow
-		return true;
-	if (peekAttrib(m_FlagCollection, CPU_SF))	// Sign
-		return true;
-	if (peekAttrib(m_FlagCollection, CPU_CF))	// Carry
+	if (peekAttrib(m_FlagCollection, CPU_ZF) ||		// Zero
+		peekAttrib(m_FlagCollection, CPU_OF) ||		// Overflow
+		peekAttrib(m_FlagCollection, CPU_SF) ||		// Sign
+		peekAttrib(m_FlagCollection, CPU_CF))		// Carry
 		return true;
 }
 

@@ -54,4 +54,4 @@ void pop(List* stack, uint32_t sz);
 //
 void push(List* stack, uint32_t data);
 
-#endif //!__MEMORY_H
+#endif // !__MEMORY_H
