@@ -115,6 +115,7 @@ typedef struct directive_t {
 
 //
 //	TODO: Place this somewhere close to the assembler
+//	- Assembler utilities/config.h ?
 //
 
 const directive_t Directives[4][UCHAR_MAX] = {
@@ -127,17 +128,26 @@ const directive_t Directives[4][UCHAR_MAX] = {
 
 typedef unsigned char uint8_t;
 
+// RAM	*/
+// - Random Access Memory element structure
+// 
 typedef struct RAM {
 	instruct_t instruction;
 
 } RAM;
 
+// List	*/
+// - Memory Stack element structure
+// 
 typedef struct List {
 	__int32 data;
 	List* next;
 
-} List_t;
+} List;
 
+// Tag	*/
+// - 
+// 
 typedef struct tag {
 	char *string;				//					( 1 byte  )
 	unsigned short address;		//					( 2 bytes )

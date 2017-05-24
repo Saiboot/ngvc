@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="CPU.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -28,9 +31,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Assembler utilities\file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Assembler utilities\preproc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Assembler utilities\lexisis.h">
@@ -48,7 +48,7 @@
     <ClInclude Include="Assembler utilities\atribuf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="common.h">
+    <ClInclude Include="Assembler utilities\preproc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

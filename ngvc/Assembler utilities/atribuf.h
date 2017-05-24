@@ -1,11 +1,11 @@
 #ifndef _NGLIB_ATRIBUF
 #define _NGLIB_ATRIBUF
 
-//************************************************//
-//	NGLIB                                         //
-//	Copyright (c) 2017 Tobias Ljung & Samuel Jos  //
-//                                                //
-//************************************************//
+//*************************************************//
+//  NGLIB                                          //
+//  Copyright (c) 2017 Tobias Ljung & Samuel Jos   //
+//                                                 //
+//*************************************************//
 
 namespace nglib_utilities {
 
