@@ -1,5 +1,6 @@
 #include <fstream>
 #include "../common.h"
+#include "err.h"
 
 #ifndef __PREPROC_H
 #define __PREPROC_H
@@ -33,15 +34,26 @@ bool is_number(const char *string) {
 //	
 void asm_Preprocess(char *aBuf) {
 
-	char *tokens = (char*)malloc(strlen(aBuf) + 1);				// Allocate token storage
-	tag *tags = (tag*)malloc(sizeof(tag) * sizeof(uint16_t));	// Allocate tag storage
+	//	
+	//	Assembler init:
+	//	
 
-	for (int i = 0; i < sizeof(uint16_t); i++)		// Loop through all elements
-		tags[i] = tag(nullptr, NULL);				// Clear tags
+	Symbol *iSymbol_table = (Symbol*)malloc(sizeof(char) * 25);
+	int _symp = NULL;
 
-	int last = 0;		// End of token storage
-	int cnt = 0;		// Amount of tags stored
-	int pos = 0;		// Tag address position
+	//
+	//
+	//
+
+	char *tokens = (char*)malloc(strlen(aBuf) + 1);                     // Allocate token storage
+	label *labels = (label*)malloc(sizeof(label) * sizeof(uint16_t));   // Allocate label storage
+
+	for (int i = 0; i < sizeof(uint16_t); i++)      // Loop through all elements
+		*(labels + i) = label(nullptr, NULL);       // Clear labels
+
+	int last	= NULL;		// End of token storage
+	int labcnt	= NULL;		// Amount of labels stored
+	int labadr	= NULL;		// label address position
 
 	for (size_t i = 0; i < strlen(aBuf); i++)
 	{
@@ -96,33 +108,39 @@ void asm_Preprocess(char *aBuf) {
 			}
 
 #pragma endregion
-#pragma region Lable Indication
+#pragma region Label Indication
 
 			//	
-			///	TODO: Lable Indication 
-			//	NOTE: Lable Indication >> lexisis.h
+			//	TODO: Label Indication: Make more safe!
+			//	NOTE: Label Indication >> lexisis.h
 			//
 
-			/* Check for tag */
-			if (token[strlen(token) - 1] == ':') {				///	Tag:
-				char *tag_str = (char*)malloc(sizeof(token));	// Allocate space for new tag 
-				strncpy(tag_str, token, strlen(token) - 1);		// token >> tag_str (tag name)
+			/* Check for label */
+			if (token[strlen(token) - 1] == ':') {              ///	label:
+				char *label_str = (char*)malloc(sizeof(token)); // Allocate temporary space for new label
+				strncpy(label_str, token, strlen(token) - 1);   // token >> label_str (label name)
+				
+				/* Make sure the lable doesn't start with a number */
+				if (isdigit(token[strlen(token)])) {
+					iSymbol_table[_symp].sym = token;
+					iSymbol_table[_symp].addr = labadr;
+				}
 
-				/* Prevent tag redefinition */
-				for (size_t i = 0; i < cnt; i++) {				// Loop through every stored tag
-					if (!strcmp(tags[i].string, tag_str))		// Error if new tag name equals an old tag's name
-						printf("Assembler Error >> redefined tag '%s'\n", tag_str);
+				/* Prevent label redefinition */
+				for (size_t i = 0; i < labcnt; i++) {				// Loop through every stored label
+					if (!strcmp(labels[i].id, label_str))		// Error if new label name equals an old label's name
+						printf("Assembler Error >> redefined tag '%s'\n", label_str);
 				}
 
 				/* Store new tag */
-				tags[cnt].string = (char*)malloc(sizeof(tag_str));	//	Allocate memory for tag name
-				strcpy(tags[cnt].string, tag_str);					//	tag_str >> tag storage (tag name)
-				tags[cnt++].address = pos;							//	tag address ^
+				labels[labcnt].id = (char*)malloc(sizeof(label_str));	//	Allocate memory for label name
+				strcpy(labels[labcnt].id, label_str);					//	label_str >> label storage (label name)
+				labels[labcnt++].address = labadr;						//	label address ^
 
 				/* Replace token */
-				token = "NOP";			// NOP: no operation
+				token = "NOP";			// no operation
 
-				free(tag_str);
+				free(label_str);
 			}
 
 #pragma endregion
@@ -134,21 +152,17 @@ void asm_Preprocess(char *aBuf) {
 			/* Separate tokens with ',' */
 			tokens[last++] = ',';
 
-			pos++;	// Next (Address) position
-
-			/* numbers are 2 bytes */
-			if (is_number(token))
-				pos++;
+			if (!is_number(token))
+				labadr++;					// Next (Address) position
 
 			/* get next token */
 			token = strtok(NULL, ",\n");
 		}
 	}
 
-	/* NULL */
 	tokens[last - 1] = '\0';
 
-	last = 0;
+	last = NULL;
 
 	char *token_final = (char*)malloc(strlen(aBuf) + 1);
 

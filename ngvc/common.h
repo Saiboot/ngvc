@@ -128,7 +128,7 @@ const directive_t Directives[4][UCHAR_MAX] = {
 
 typedef unsigned char uint8_t;
 
-// RAM	*/
+// RAM */
 // - Random Access Memory element structure
 // 
 typedef struct RAM {
@@ -136,7 +136,7 @@ typedef struct RAM {
 
 } RAM;
 
-// List	*/
+// List */
 // - Memory Stack element structure
 // 
 typedef struct List {
@@ -145,15 +145,15 @@ typedef struct List {
 
 } List;
 
-// Tag	*/
+// Label */
 // - 
 // 
-typedef struct tag {
-	char *string;				//					( 1 byte  )
-	unsigned short address;		//					( 2 bytes )
+typedef struct label {
+	char *id;                   //					( 1 byte  )
+	unsigned short address;     //					( 2 bytes )
 
-	tag(char* s, unsigned short addr) {
-		string = s;
+	label(char* s, unsigned short addr) {
+		id = s;
 		address = addr;
 	}
 

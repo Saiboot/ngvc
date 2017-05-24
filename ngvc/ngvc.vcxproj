@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Assembler utilities\asmo.h" />
     <ClInclude Include="Assembler utilities\atribuf.h" />
+    <ClInclude Include="Assembler utilities\err.h" />
     <ClInclude Include="Assembler utilities\file.h" />
     <ClInclude Include="Assembler utilities\format.h" />
     <ClInclude Include="Assembler utilities\lexisis.h" />
